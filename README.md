@@ -36,12 +36,13 @@ Now to run the code you first need to install all the requirements:
 First run the command:  
 `python src/main.py`
 
-After running this command you will be given an output that the server has started running on `http://127.0.0.1:5000`. 
+After running this command you will be given an output that the server has started running on `http://127.0.0.1:5000`.   
 **Note:** When running the app for the first time it will take some time to create the embeddings (will take time to create embeddings after 7 days of the most recent modified file).
-Once the embeddings are done, you can do a `GET` request on ThunderClient or Postman and should recieve an output as:  Good to Go! Start searching!
+Once the embeddings are done, you can do a `GET` request on ThunderClient or Postman and should recieve an output as:  **Good to Go! Start searching!**
 
 ### Putting a Query
-To start searching you should add `/api/search` at the end of the link:`http://127.0.0.1:5000`, i.e.,  
+To start searching you should add `/api/search` at the end of the link:`http://127.0.0.1:5000` .  
+Which should be like this:  
 `http://127.0.0.1:5000/api/search`
 
 
