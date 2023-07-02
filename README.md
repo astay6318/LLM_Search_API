@@ -12,17 +12,17 @@ To install virtual environment run the following command:
 `pip install virtualenv`
 
 ### Configuring the Environment
-Create your virtual environment using the following command:
+Create your virtual environment using the following command:  
 `python3 -m venv myenv `
 
-Start your virtual environment:
-For windows:
+Start your virtual environment:  
+For windows:  
 `myenv\Scripts\activate` 
 
-For Mac:
+For Mac:  
 `source myenv/bin/activate`
 
-Now to run the code you first need to install all the requirements:
+Now to run the code you first need to install all the requirements:  
 `pip install -r requirements.txt `
 
 
