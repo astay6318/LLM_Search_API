@@ -15,17 +15,24 @@ pip install virtualenv
 Follow these steps to configure your environment and run the LLM Based Search API:  
 
 Create your virtual environment using the following command:  
-`python3 -m venv myenv `
+```
+python3 -m venv myenv
+```
 
 Start your virtual environment:  
 For windows:  
-`myenv\Scripts\activate` 
+```
+myenv\Scripts\activate
+```   
 
 For Mac:  
-`source myenv/bin/activate`
+```
+source myenv/bin/activate
+```  
 
 Now to run the code you first need to install all the requirements:  
-`pip install -r requirements.txt `
+```
+pip install -r requirements.txt ```  
 
 **Note:**  The first you run the model you will need internet connection to load the required models to run the application.
 
@@ -33,15 +40,21 @@ Now to run the code you first need to install all the requirements:
 To start using the LLM Based Search API, follow these steps:  
 
 1. Run the server using the command:
-`python src/main.py`
+```
+python src/main.py 
+```  
 
-After running this command you will be given an output that the server has started running at `http://127.0.0.1:5000`.   
+After running this command you will be given an output that the server has started running at ```
+http://127.0.0.1:5000
+```.     
 **Note:** The first time you run the app, it may take some time to create the embeddings, which will be done once and updated after 7 days of the most recently modified file. Once the embeddings are created, you can proceed with the next step.
 2. Perform a GET request on Thunder Client or Postman to ensure the server is ready for queries. The expected output should be: **Good to Go! Start searching!**  
 
 ### Making Queries
 To ask questions specific to your documents, make a GET request to the following URL:  
-`http://127.0.0.1:5000`.   
+```
+http://127.0.0.1:5000\api\search
+```.   
 
 Feel free to explore and integrate this API into your projects. If you encounter any issues or have suggestions for improvements, please open an issue or contribute to the project.
 
