@@ -6,7 +6,7 @@ Python, Virtual environment and ThunderClient/Postman
 ### Installing Python, Virtual environment and ThunderClient/Postman
 1. Python:Visit the official Python website: [python.org](https://www.python.org)   
 2. Virtual Environment: Install virtual environment using the following command:  
-`pip install virtualenv`   
+`pip install virtualenv   `      
 3. Postman/ThunderClient: Install Postman from the official site of Postman: [Postman](https://www.postman.com/downloads/) or search for Thunder Client in the `VS Code` extensions and install it.
 
 ### Configuring the Environment
