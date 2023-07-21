@@ -55,7 +55,7 @@ http://127.0.0.1:5000
 ### Making Queries
 To ask questions specific to your documents, make a GET request to the following URL:  
 ```
-http://127.0.0.1:5000\api\search
+http://127.0.0.1:5000/api/search
 ```      
 
 Feel free to explore and integrate this API into your projects. If you encounter any issues or have suggestions for improvements, please open an issue or contribute to the project.
