@@ -45,9 +45,10 @@ To start using the LLM Based Search API, follow these steps:
 python src/main.py 
 ```  
 
-After running this command you will be given an output that the server has started running at ```
+After running this command you will be given an output that the server has started running at 
+```
 http://127.0.0.1:5000
-```.     
+```     
 **Note:** The first time you run the app, it may take some time to create the embeddings, which will be done once and updated after 7 days of the most recently modified file. Once the embeddings are created, you can proceed with the next step.
 2. Perform a GET request on Thunder Client or Postman to ensure the server is ready for queries. The expected output should be: **Good to Go! Start searching!**  
 
@@ -55,7 +56,7 @@ http://127.0.0.1:5000
 To ask questions specific to your documents, make a GET request to the following URL:  
 ```
 http://127.0.0.1:5000\api\search
-```.   
+```      
 
 Feel free to explore and integrate this API into your projects. If you encounter any issues or have suggestions for improvements, please open an issue or contribute to the project.
 
