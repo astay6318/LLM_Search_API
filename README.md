@@ -32,7 +32,8 @@ source myenv/bin/activate
 
 Now to run the code you first need to install all the requirements:  
 ```
-pip install -r requirements.txt ```  
+pip install -r requirements.txt
+```    
 
 **Note:**  The first you run the model you will need internet connection to load the required models to run the application.
 
