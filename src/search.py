@@ -1,73 +1,73 @@
 import requests
-from documents import extract_content_from_html
+# from documents import extract_content_from_html
 from langchain import PromptTemplate,  LLMChain, HuggingFacePipeline
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 
-def fetchDocumentById(id, cookie):
-    url = f"https://simpl.atlassian.net/wiki/rest/api/content/{id}?expand=body.storage"
-    headers = {
-        "Cookie": cookie
-    }
-    response = requests.get(url, headers=headers)
+# def fetchDocumentById(id, cookie):
+#     url = f"https://simpl.atlassian.net/wiki/rest/api/content/{id}?expand=body.storage"
+#     headers = {
+#         "Cookie": cookie
+#     }
+#     response = requests.get(url, headers=headers)
 
-    if response.status_code == 200:
-        plain_text=extract_content_from_html(dict(response.json())['body']['storage']['value'])
-        cleaned_text = ' '.join(plain_text.splitlines()).strip()
-        return  cleaned_text
-    else:
-        return None
+#     if response.status_code == 200:
+#         plain_text=extract_content_from_html(dict(response.json())['body']['storage']['value'])
+#         cleaned_text = ' '.join(plain_text.splitlines()).strip()
+#         return  cleaned_text
+#     else:
+#         return None
 
-def getTopSimilarDocIdsFromConfluence(query,cookie_val):
-    url = 'https://simpl.atlassian.net/wiki/rest/api/search'
-    params = {
-        'cql': f"text ~ '{query}' AND space=TAC",
-        'limit': 3
-    }
-    headers = {
-        'Cookie': cookie_val
-    }
+# def getTopSimilarDocIdsFromConfluence(query,cookie_val):
+#     url = 'https://simpl.atlassian.net/wiki/rest/api/search'
+#     params = {
+#         'cql': f"text ~ '{query}' AND space=TAC",
+#         'limit': 3
+#     }
+#     headers = {
+#         'Cookie': cookie_val
+#     }
 
-    response = requests.get(url, params=params, headers=headers)
+#     response = requests.get(url, params=params, headers=headers)
 
-    if response.status_code == 200:
-        ids=[]
-        data = dict(response.json())
-        results=data['results']
-        for result in results:
-            ids.append(result['content']['id'])
-        return ids
-    else:
-        print(f'Request failed with status code: {response.status_code}')
+#     if response.status_code == 200:
+#         ids=[]
+#         data = dict(response.json())
+#         results=data['results']
+#         for result in results:
+#             ids.append(result['content']['id'])
+#         return ids
+#     else:
+#         print(f'Request failed with status code: {response.status_code}')
 
-def generateContexts(ids,cookie_val):
-    context=""
-    for id in ids:
-        context+=fetchDocumentById(id,cookie_val)
-    return context
+# def generateContexts(ids,cookie_val):
+#     context=""
+#     for id in ids:
+#         context+=fetchDocumentById(id,cookie_val)
+#     return context
 
-def GetSearchResultUsingConfluenceSearchAPI(query,cookie_val,llm_model):
-    ids=getTopSimilarDocIdsFromConfluence(query,cookie_val)
-    context=generateContexts(ids,cookie_val)
-    if(len(context)==0):
-        return "I dont Know"
-    else:
-        print(context)
-    template = """
-    Answer the "question" strictly based on the "context" below. Give me the answer related to question only don't add the things which is not asked in the question
-    "I don't know" if you don't find relevant context.
+# def GetSearchResultUsingConfluenceSearchAPI(query,cookie_val,llm_model):
+#     ids=getTopSimilarDocIdsFromConfluence(query,cookie_val)
+#     context=generateContexts(ids,cookie_val)
+#     if(len(context)==0):
+#         return "I dont Know"
+#     else:
+#         print(context)
+#     template = """
+#     Answer the "question" strictly based on the "context" below. Give me the answer related to question only don't add the things which is not asked in the question
+#     "I don't know" if you don't find relevant context.
 
-    context: {context}
-    question: {instruction}
-    answer:
-    """
-    prompt_with_context = PromptTemplate(
-        input_variables=["instruction", "context"],
-        template=template)
-    llm = HuggingFacePipeline(pipeline=llm_model)
-    llm_context_chain = LLMChain(llm=llm, prompt=prompt_with_context)
-    answer = llm_context_chain.predict(instruction=query, context=context).lstrip()
-    return answer
+#     context: {context}
+#     question: {instruction}
+#     answer:
+#     """
+#     prompt_with_context = PromptTemplate(
+#         input_variables=["instruction", "context"],
+#         template=template)
+#     llm = HuggingFacePipeline(pipeline=llm_model)
+#     llm_context_chain = LLMChain(llm=llm, prompt=prompt_with_context)
+#     answer = llm_context_chain.predict(instruction=query, context=context).lstrip()
+#     return answer
 
 def Similarity_Search_Using_Embeddings(query,Cookie_VAL,llm_model):
     template = """
