@@ -108,8 +108,11 @@ SPACE_KEY = os.getenv("space_key")
 
 def load_documents():
     loader = ConfluenceLoader(
-    url= URL, username= USERNAME, api_key= API_KEY)
-    documents = loader.load(space_key=SPACE_KEY, include_attachments=True, limit=50)
+    url="https://demoforsimp.atlassian.net/wiki", username="astay6318@gmail.com", api_key="ATATT3xFfGF0x_jtQEQg7v3DBEVB31ZSiSaC5Dsz51RW-7JEFvyChoauuYNqX6LZFylp8WWsrM3CfYqWc8nPbiQuHhXDUoShyY0S_hrZ7l7sMtKJ_lcsdP3kcGqcLuIJPgLibuIZ0aN-FvrBfA1pQtHUIsWLRjY14aYp8YBvUoXn7Cg_HQNiTKg=C84CD722")
+    documents = loader.load(space_key="testing", include_attachments=True, limit=50)
+    # loader = ConfluenceLoader(
+    # url= URL, username= USERNAME, api_key= API_KEY)
+    # documents = loader.load(space_key=SPACE_KEY, include_attachments=True, limit=50)
     return documents
 
 def Document_Splitter(cookie_val):
